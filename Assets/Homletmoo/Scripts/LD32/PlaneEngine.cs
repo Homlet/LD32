@@ -18,7 +18,7 @@ public class PlaneEngine : MonoBehaviour
             _thrust = Mathf.Clamp(value, 0, 1);
 
             ParticleSystem emitter = smoke.GetComponent<ParticleSystem>();
-            emitter.emissionRate = 200 * value;
+            emitter.emissionRate = 5 + 200 * value;
 
             prop.GetComponent<Animator>().SetFloat("prop", value);
         }

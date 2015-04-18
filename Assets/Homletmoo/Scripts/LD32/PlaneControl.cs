@@ -14,6 +14,6 @@ public class PlaneControl : MonoBehaviour
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
 
-        body.AddTorque((Input.GetAxisRaw("Pitch") + 0.05f) * 3000f);
+        body.AddTorque(Input.GetAxisRaw("Pitch") * 3000f);
     }
 }

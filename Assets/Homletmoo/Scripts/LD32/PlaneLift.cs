@@ -20,14 +20,18 @@ public class PlaneLift : MonoBehaviour
 
         Vector2 dragDirection = -body.velocity.normalized;
         body.AddForce(cd * scale * dragDirection);
+        Debug.DrawLine(body.worldCenterOfMass,
+            body.worldCenterOfMass + cd * scale * dragDirection * 0.0005f);
+        Debug.DrawLine(body.worldCenterOfMass,
+            body.worldCenterOfMass + body.mass * body.gravityScale * -Vector2.up * 0.0005f);
         
         // After 25 degrees, lift falls off (stall).
-        if (Mathf.Abs(aoa) < 25)
+        if (Mathf.Abs(aoa) < 60)
         {
             Vector2 liftDirection = body.velocity.normalized.Rotate(90);
-            Vector2 position = body.worldCenterOfMass +
-                (Vector2) transform.TransformVector(-0.1f, 0.5f, 0);
-            body.AddForceAtPosition(cl * scale * liftDirection, position);
+            body.AddForce(cl * scale * liftDirection);
+            Debug.DrawLine(body.worldCenterOfMass,
+                body.worldCenterOfMass + cl * scale * liftDirection * 0.0005f);
         }
 
         // Major stall!
