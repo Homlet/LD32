@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Whale : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+public class Whale : MonoBehaviour
+{
+	void Start()
+    {
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
+        body.AddForce(new Vector2(0, 500000), ForceMode2D.Impulse);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void Update()
+    {
+	    
 	}
 }

@@ -3,11 +3,17 @@ using System.Collections;
 
 public class Bomb : MonoBehaviour
 {
-    void FixedUpdate()
+    public GameObject explosionPrefab;
+
+    void Start()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
-        print(body.position.y);
-        if (transform.position.y <= -60)
+        body.AddTorque(-3, ForceMode2D.Impulse);
+    }
+    
+    void FixedUpdate()
+    {
+        if (transform.position.y <= 0)
         {
             Detonate();
         }
@@ -15,6 +21,9 @@ public class Bomb : MonoBehaviour
 
     void Detonate()
     {
-        print("BANG");
+        GameObject explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = transform.position;
+
+        Destroy(gameObject);
     }
 }

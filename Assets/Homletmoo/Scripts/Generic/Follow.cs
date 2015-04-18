@@ -6,17 +6,17 @@ public class Follow : MonoBehaviour
     public Transform parent;
     public Vector3 offset;
 
-    public float xFactor = 1;
-    public float yFactor = 1;
-    public float zFactor = 1;
+    public bool moveX = true;
+    public bool moveY = true;
+    public bool moveZ = true;
 
     void LateUpdate()
     {
         Vector3 tempPosition = parent.position +
             parent.TransformDirection(offset);
-        tempPosition.x *= xFactor;
-        tempPosition.y *= yFactor;
-        tempPosition.z *= zFactor;
+        if (!moveX) { tempPosition.x = transform.position.x; }
+        if (!moveY) { tempPosition.y = transform.position.y; }
+        if (!moveZ) { tempPosition.z = transform.position.z; }
         transform.position = tempPosition;
     }
 }
