@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: 9194ef1ed192ecd448592824c31d4d6e
-timeCreated: 1429298622
+guid: e2ae9ff0288112745a32ed01d2971f37
+timeCreated: 1429363191
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: plane
+    21300002: plane_up
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -37,18 +39,38 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: .125
+  spritePixelsToUnits: .25
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: plane
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 38
+        width: 40
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: .526315808}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: plane_up
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 40
+        height: 14
+      alignment: 9
+      pivot: {x: 1, y: .357142866}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
