@@ -10,7 +10,7 @@ public class PlaneEngine : MonoBehaviour
     [Tooltip("Engine power in kW.")]
     public float enginePower;
 
-    private float _thrust = 1;
+    private float _thrust = 0.6f;
     [HideInInspector]
     public float thrust {
         get { return _thrust; }
