@@ -8,6 +8,12 @@ public class PlaneControl : MonoBehaviour
         PlaneEngine engine = GetComponent<PlaneEngine>();
 
         engine.thrust += Input.GetAxisRaw("Thrust") * 0.0025f;
-        print(engine.thrust);
+    }
+
+    void FixedUpdate()
+    {
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
+
+        body.AddTorque((Input.GetAxisRaw("Pitch") + 0.05f) * 3000f);
     }
 }

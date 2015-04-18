@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PlaneEngine : MonoBehaviour
 {
+    public GameObject smoke;
+    public GameObject prop;
+
     // Power produced by engine in kilowatts.
     [Tooltip("Engine power in kW.")]
     public float enginePower;
@@ -11,15 +14,14 @@ public class PlaneEngine : MonoBehaviour
     [HideInInspector]
     public float thrust {
         get { return _thrust; }
-        set { _thrust = Mathf.Clamp(value, 0, 1); }
-    }
+        set {
+            _thrust = Mathf.Clamp(value, 0, 1);
 
-    public GameObject smoke;
+            ParticleSystem emitter = smoke.GetComponent<ParticleSystem>();
+            emitter.emissionRate = 200 * value;
 
-    void Update()
-    {
-        ParticleSystem emitter = smoke.GetComponent<ParticleSystem>();
-        emitter.emissionRate = 200 * thrust;
+            prop.GetComponent<Animator>().SetFloat("prop", value);
+        }
     }
 
     void FixedUpdate()
@@ -30,7 +32,9 @@ public class PlaneEngine : MonoBehaviour
         {
             float force = thrust * 1000 * enginePower / body.velocity.magnitude;
             Vector2 direction = transform.TransformDirection(1, 0, 0);
-            body.AddForce(force * direction);
+            Vector2 position = body.worldCenterOfMass +
+                (Vector2) transform.TransformVector(0, -0.001f, 0);
+            body.AddForceAtPosition(force * direction, position);
         }
     }
 }
