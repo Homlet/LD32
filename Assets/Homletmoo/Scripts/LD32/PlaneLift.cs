@@ -25,8 +25,8 @@ public class PlaneLift : MonoBehaviour
         Debug.DrawLine(body.worldCenterOfMass,
             body.worldCenterOfMass + body.mass * body.gravityScale * -Vector2.up * 0.0005f);
         
-        // After 40 degrees, lift falls off (stall).
-        if (Mathf.Abs(aoa) < 50)
+        // After 65 degrees, lift falls off (stall).
+        if (Mathf.Abs(aoa) < 65)
         {
             Vector2 liftDirection = body.velocity.normalized.Rotate(90);
             body.AddForce(cl * scale * liftDirection);

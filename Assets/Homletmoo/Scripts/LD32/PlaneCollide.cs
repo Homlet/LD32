@@ -5,7 +5,7 @@ public class PlaneCollide : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("BAND");
+        print("DEAD");
         if (other.gameObject.tag == "Explosion")
         {
             Destroy(gameObject);

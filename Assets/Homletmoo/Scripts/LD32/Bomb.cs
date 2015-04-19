@@ -22,7 +22,6 @@ public class Bomb : MonoBehaviour
     void Detonate()
     {
         GameObject explosion = Instantiate(explosionPrefab);
-        explosion.transform.position = transform.position;
 
         Destroy(gameObject);
     }

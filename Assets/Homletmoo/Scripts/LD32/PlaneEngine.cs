@@ -10,7 +10,7 @@ public class PlaneEngine : MonoBehaviour
     [Tooltip("Engine power in kW.")]
     public float enginePower;
 
-    private float _thrust = 0.6f;
+    private float _thrust = 1;
     [HideInInspector]
     public float thrust {
         get { return _thrust; }
@@ -18,7 +18,7 @@ public class PlaneEngine : MonoBehaviour
             _thrust = Mathf.Clamp(value, 0, 1);
 
             ParticleSystem emitter = smoke.GetComponent<ParticleSystem>();
-            emitter.emissionRate = 5 + 200 * value;
+            emitter.emissionRate = 5 + 200 * value * value;
 
             prop.GetComponent<Animator>().SetFloat("prop", value);
         }
