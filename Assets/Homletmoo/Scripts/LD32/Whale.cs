@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Whale : MonoBehaviour
 {
-    public GameObject splashPrefab;
-    public GameObject bigSplashPrefab;
-
     public Vector2 riseVelocity;
 
     bool rising = true;
@@ -37,11 +34,6 @@ public class Whale : MonoBehaviour
     {
         if (transform.position.y < 0)
         {
-            GameObject splash = Instantiate(splashPrefab);
-            GameObject bigSplash = Instantiate(bigSplashPrefab);
-            splash.transform.position = transform.position;
-            bigSplash.transform.position = transform.position;
-
             Destroy(gameObject);
         }
     }

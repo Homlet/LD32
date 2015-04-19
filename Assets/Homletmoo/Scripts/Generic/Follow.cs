@@ -12,11 +12,14 @@ public class Follow : MonoBehaviour
 
     void Update()
     {
-        Vector3 tempPosition = parent.position +
-            parent.TransformDirection(offset);
-        if (!moveX) { tempPosition.x = transform.position.x; }
-        if (!moveY) { tempPosition.y = transform.position.y; }
-        if (!moveZ) { tempPosition.z = transform.position.z; }
-        transform.position = tempPosition;
+        if (parent != null)
+        {
+            Vector3 tempPosition = parent.position +
+                parent.TransformDirection(offset);
+            if (!moveX) { tempPosition.x = transform.position.x; }
+            if (!moveY) { tempPosition.y = transform.position.y; }
+            if (!moveZ) { tempPosition.z = transform.position.z; }
+            transform.position = tempPosition;
+        }
     }
 }

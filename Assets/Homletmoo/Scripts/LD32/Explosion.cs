@@ -10,10 +10,11 @@ public class Explosion : MonoBehaviour
     void SpawnWhale()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) { return; }
         int index = Random.Range(0, whales.Length);
 
         GameObject whale = Instantiate(whales[index]);
-        Vector2 position = new Vector2(player.transform.position.x + Random.Range(-6f, 6f), -10);
+        Vector2 position = new Vector2(player.transform.position.x + Random.Range(-10f, 10f), -10);
         whale.transform.position = position;
     }
 

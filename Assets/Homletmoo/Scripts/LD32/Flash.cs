@@ -10,22 +10,20 @@ public class Flash : MonoBehaviour
 
     void Update()
     {
-        GameObject plane = GameObject.FindGameObjectWithTag("Player");
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         GameObject explosion = GameObject.FindGameObjectWithTag("Explosion");
 
-        if (plane != null && explosion != null)
+        if (explosion != null)
         {
             if (explosionTime == -1)
             {
                 explosionTime = Time.time;
             }
 
-            float dist = plane.transform.position.x - explosion.transform.position.x;
+            float dist = camera.transform.position.x - explosion.transform.position.x;
             float distFactor = Mathf.Pow(1 - Mathf.Min(1, dist / visibleDistance), 2);
             float deltaTime = Time.time - explosionTime;
             float timeFactor = 1 - Mathf.Min(1, deltaTime / initialTime);
-
-            print(timeFactor + " : " + distFactor);
 
             SpriteRenderer sprite = GetComponent<SpriteRenderer>();
             sprite.color = new Color(1, 1, 1, timeFactor + distFactor);
