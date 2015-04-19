@@ -8,7 +8,8 @@ public class PlaneControl : MonoBehaviour
     void Update()
     {
         PlaneEngine engine = GetComponent<PlaneEngine>();
-        engine.thrust += Input.GetAxisRaw("Thrust") * 0.0025f;
+        //engine.thrust += Input.GetAxisRaw("Thrust") * 0.0025f;
+        engine.thrust += 0.005f;  // Let's not bother with engine control.
 
         Animator animator = body.GetComponent<Animator>();
         animator.SetFloat("Pitch", Input.GetAxisRaw("Pitch"));

@@ -37,7 +37,6 @@ public class PlaneLift : MonoBehaviour
         // Major stall!
         if (Mathf.Abs(aoa) > 75)
         {
-            print("STALL");
             body.AddForce(-body.velocity);
             GetComponent<PlaneEngine>().thrust -= 0.1f;
         }

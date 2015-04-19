@@ -10,7 +10,7 @@ public class Follow : MonoBehaviour
     public bool moveY = true;
     public bool moveZ = true;
 
-    void LateUpdate()
+    void Update()
     {
         Vector3 tempPosition = parent.position +
             parent.TransformDirection(offset);
