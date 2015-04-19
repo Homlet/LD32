@@ -21,7 +21,7 @@ public class Bomb : MonoBehaviour
 
     void Detonate()
     {
-        GameObject explosion = Instantiate(explosionPrefab);
+        Instantiate(explosionPrefab);
 
         Destroy(gameObject);
     }
