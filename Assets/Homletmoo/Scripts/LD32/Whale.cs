@@ -6,6 +6,7 @@ public class Whale : MonoBehaviour
     public Vector2 riseVelocity;
 
     bool rising = true;
+    bool captured = false;
 
     void Rise()
     {
@@ -30,6 +31,31 @@ public class Whale : MonoBehaviour
         }
     }
 
+    public void Capture(Transform other)
+    {
+        captured = true;
+
+        gameObject.AddComponent<Follow>();
+        GetComponent<Follow>().parent = other;
+
+        transform.localScale = new Vector3(0.75f, 0.75f, 1);
+
+        GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Collider2D>().isTrigger = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!captured)
+            return;
+
+        if (other.gameObject.tag == "Reaper")
+        {
+            other.gameObject.GetComponent<Reaper>().captured++;
+            Destroy(gameObject);
+        }
+    }
+
     void Fall()
     {
         if (transform.position.y < 0)
@@ -40,10 +66,10 @@ public class Whale : MonoBehaviour
 
 	void Start()
     {
-        transform.localScale = new Vector3(2.5f, 2.5f, 1);
+        transform.localScale = new Vector3(1.5f, 1.5f, 1);
 
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        sprite.color = new Color(1, 1, 1, 0.4f);
+        sprite.color = new Color(1, 1, 1, 0.5f);
 
         Rigidbody2D body = GetComponent<Rigidbody2D>();
         body.isKinematic = true;

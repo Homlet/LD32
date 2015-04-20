@@ -6,11 +6,15 @@ public class PlaneEngine : MonoBehaviour
     public GameObject smoke;
     public GameObject prop;
 
+    public AudioSource engineAudio;
+    public AudioSource stallAudio;
+
     // Power produced by engine in kilowatts.
     [Tooltip("Engine power in kW.")]
     public float enginePower;
 
-    private float _thrust = 1;
+    bool stalled = false;
+    float _thrust = 1;
     [HideInInspector]
     public float thrust {
         get { return _thrust; }
@@ -18,9 +22,22 @@ public class PlaneEngine : MonoBehaviour
             _thrust = Mathf.Clamp(value, 0, 1);
 
             ParticleSystem emitter = smoke.GetComponent<ParticleSystem>();
-            emitter.emissionRate = 5 + 200 * value * value;
+            emitter.emissionRate = 5 + 200 * thrust * thrust;
 
-            prop.GetComponent<Animator>().SetFloat("prop", value);
+            prop.GetComponent<Animator>().SetFloat("prop", thrust);
+
+            if (thrust > 0.5f || !Begin.playing)
+            {
+                if (!engineAudio.isPlaying) { engineAudio.Play(); }
+
+                stalled = false;
+            } else
+            {
+                engineAudio.Stop();
+                if (!stalled) { stallAudio.Play(); }
+
+                stalled = true;
+            }
         }
     }
 

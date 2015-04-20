@@ -8,6 +8,8 @@ public class PlaneLift : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!Begin.playing) { return; }
+
         Rigidbody2D body = GetComponent<Rigidbody2D>();
         
         // Angle of attack.

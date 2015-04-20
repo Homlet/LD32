@@ -5,8 +5,11 @@ public class PlaneDeath : MonoBehaviour
 {
     void Die(string reason)
     {
-        print(reason);
+        Globals.deathReason = reason;
+
         Destroy(gameObject);
+
+        Application.LoadLevel(2);
     }
 
     void Update()
@@ -16,7 +19,7 @@ public class PlaneDeath : MonoBehaviour
         if (explosion != null)
         {
             if (transform.position.x < explosion.transform.position.x)
-                Die("Burnt to a Crisp");
+                Die("Were Burnt to a Crisp");
         }
 
         if (transform.position.y < 0)

@@ -4,12 +4,7 @@ using System.Collections;
 public class Bomb : MonoBehaviour
 {
     public GameObject explosionPrefab;
-
-    void Start()
-    {
-        Rigidbody2D body = GetComponent<Rigidbody2D>();
-        body.AddTorque(-3, ForceMode2D.Impulse);
-    }
+    public AudioSource explosionAudio;
     
     void FixedUpdate()
     {
@@ -21,7 +16,10 @@ public class Bomb : MonoBehaviour
 
     void Detonate()
     {
-        Instantiate(explosionPrefab);
+        GameObject explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = new Vector3(transform.position.x, 0, 0);
+
+        explosionAudio.Play();
 
         Destroy(gameObject);
     }

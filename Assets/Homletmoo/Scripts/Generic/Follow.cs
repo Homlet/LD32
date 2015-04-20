@@ -5,6 +5,7 @@ public class Follow : MonoBehaviour
 {
     public Transform parent;
     public Vector3 offset;
+    public bool relative = true;
 
     public bool moveX = true;
     public bool moveY = true;
@@ -14,8 +15,11 @@ public class Follow : MonoBehaviour
     {
         if (parent != null)
         {
-            Vector3 tempPosition = parent.position +
-                parent.TransformDirection(offset);
+            Vector3 tempPosition = parent.position;
+            if (relative)
+                tempPosition += parent.TransformDirection(offset);
+            else
+                tempPosition += offset;
             if (!moveX) { tempPosition.x = transform.position.x; }
             if (!moveY) { tempPosition.y = transform.position.y; }
             if (!moveZ) { tempPosition.z = transform.position.z; }
